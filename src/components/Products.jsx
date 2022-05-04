@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect} from 'react'
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
@@ -8,20 +8,25 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
 import Grid from '@mui/material/Grid';
+import { useDispatch} from 'react-redux';
+import { addToCart } from '../features/handleCart';
+
+let componentMounted = true;
 
 export default function Products() {
+  
 
   const [open, setOpen] = useState(false);
   const [data, setData] = useState([]);
   const [datafilter, setDataFilter] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  let componentMounted = true;
-
-
+ 
 
   useEffect(() => {
     getData();
+    
+    
 
   }, [])
 
@@ -60,6 +65,9 @@ export default function Products() {
     const updatedPriceList = data.filter((x) => x.price < e.target.value);
     setDataFilter(updatedPriceList);
 
+    if(e.target.value === ""){
+      setDataFilter(data);
+    }
 
   }
 
@@ -107,16 +115,25 @@ export default function Products() {
 
 
   const ShowProduct = () => {
+
+    const dispatch = useDispatch();
+
+
     return (
       <div className='grid grid-cols-4 justify-items-center gap-y-4'>
 
         {datafilter.map(product => {
 
-          const addToCart = () => {
+
+          const add =()=>{
+
+            dispatch(addToCart(product));
 
             setOpen(true);
+
           }
 
+          
           const handleClose = (reason) => {
             if (reason === 'clickaway') {
               return;
@@ -144,9 +161,9 @@ export default function Products() {
               <img className='h-[230px]' src={product.image} alt="" />
               <p className='text-center'>{product.title.substring(0, 10)}</p>
               <p className='text-center'>${product.price}</p>
-              <button onClick={addToCart} className='hover:bg-gray-500 hover:text-white text-md font-medium border-2 p-2 rounded-md text-gray-700 transition-colors duration-200'>Buy Now</button>
+              <button onClick={add} className='hover:bg-gray-500 hover:text-white text-md font-medium border-2 p-2 rounded-md text-gray-700 transition-colors duration-200'>Buy Now</button>
               <Snackbar open={open}
-                autoHideDuration={6000}
+                autoHideDuration={1700}
                 onClose={handleClose}
                 action={action}>
                 <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
@@ -189,7 +206,7 @@ export default function Products() {
             <div className="price flex items-center gap-x-4">
               <h4 className='border-gray-300 '>Price : </h4>
               <div className=''>
-                <input className='border-b-2 outline-none' placeholder='Max price ($)' onChange={filterPrice} type="text"/>
+                <input className='border-b-2 outline-none' placeholder='Max price ($)' onChange={filterPrice} type="number"/>
               </div>
             </div>
 

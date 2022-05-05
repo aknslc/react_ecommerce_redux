@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFromCart } from '../features/handleCart';
+import { Link } from 'react-router-dom';
 
 
 export default function Cart() {
@@ -13,10 +14,11 @@ export default function Cart() {
   return (
     <>
       <div className='container items-center gap-y-4'>
-        <h2 className='text-center my-20 text-7xl font-thin'>Shopping Cart</h2>
+        <h2 className='text-center my-20 text-7xl font-thin text-[#72B9CC]'>Shopping Cart</h2>
         {cart.length === 0 ? (
-          <div className='cart-empty text-center mt-36 text-2xl'>
-            <p>Your cart is currently empty</p>
+          <div className='cart-empty text-center mt-24 text-2xl'>
+            <p className='mb-14 text-3xl text-gray-500'>Your cart is currently empty</p>
+            <Link to="/products" className='bg-[#72B9CC] p-4 text-white hover:bg-blue-300 transition-all duration-150 font-medium uppercase'>Start shopping</Link>
           </div>
         ) : (
           <>
@@ -52,7 +54,6 @@ export default function Cart() {
               })}
             </div>
 
-            <div className='text-right mr-48 py-10'>Subtotal: {total}</div>
           </>
         )}
       </div>

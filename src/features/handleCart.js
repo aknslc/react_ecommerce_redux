@@ -6,7 +6,8 @@ export const handleCart = createSlice({
     initialState: {
         amount: 0,
         cart: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [],
-        total: 0
+        total: 0,
+        price: []
     },
 
     reducers: {
@@ -23,17 +24,19 @@ export const handleCart = createSlice({
             localStorage.setItem("cart", JSON.stringify(state.cart));
 
         },
-        removeFromCart(state, action){
+        removeFromCart(state, action) {
             const nextCartItems = state.cart.filter((item) => item.id !== action.payload.id);
 
             state.cart = nextCartItems;
-        }
+        },
+
+        
 
     }
 
 });
 
 
-export const { addToCart, removeFromCart } = handleCart.actions
+export const { addToCart, removeFromCart, subtotal} = handleCart.actions
 
 export default handleCart.reducer

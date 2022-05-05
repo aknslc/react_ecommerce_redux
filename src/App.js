@@ -1,10 +1,10 @@
 import Navbar from "./components/Navbar";
 import Products from "./components/Products";
-import About from "./components/About";
-import Contact from "./components/Contact";
+
 import { Routes, Route } from 'react-router-dom';
 import Home from "./components/Home";
 import Cart from "./components/Cart";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -15,9 +15,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/Cart" element={<Cart />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+
       </Routes>
+      <Footer />
 
     </>
   );

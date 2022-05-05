@@ -22,13 +22,13 @@ export default function Home() {
     <div>
       <Slider {...settings}>
         <div className=''>
-          <img src="https://images3.alphacoders.com/105/thumb-1920-1050380.jpg" className='w-full h-[700px]' alt="slider" />
+          <img src="https://www.origastock.com/images/shopping/download/32.jpg" className='w-full h-[700px]' alt="slider" />
         </div>
         <div>
-          <img src="https://images8.alphacoders.com/106/1062942.jpg" className='w-full h-[700px]' alt="slider" />
+          <img src="https://images.ctfassets.net/rxqefefl3t5b/6I2vL9f0IVsDQ8qFgdrxH7/7660c4bab3116a4a04025d5c4802efa5/Virgin-Red-online-shopping-offers.jpg" className='w-full h-[700px]' alt="slider" />
         </div>
         <div>
-          <img src="https://images.alphacoders.com/815/thumb-1920-815053.jpg" className='w-full h-[700px]' alt="slider" />
+          <img src="https://www.donnapop.it/wp-content/uploads/2019/04/shutterstock_1038849250.jpg" className='w-full h-[700px]' alt="slider" />
         </div>
       </Slider>
     </div>
